@@ -1,7 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-dark bg-warning">
   <a href="/" class="navbar-brand">WebStore</a>
+  <a class="nav-link active" href="#">Productos</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/marcas">Marcas</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/categorias">Categorias</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/medidas">Medidas</a>
+  <a class="nav-link" href="#">Entradas</a>
+  <a class="nav-link" href="#">Salidas</a>
 </nav>
+<router-outlet></router-outlet>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -20,6 +27,5 @@
       </div>
 
     </div>
-
   </div>
 </div>

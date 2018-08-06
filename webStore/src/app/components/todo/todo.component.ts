@@ -12,7 +12,7 @@ export class TodoComponent implements OnInit {
   constructor( private todoService: TodoService) { }
 
   ngOnInit() {
-    this,this.todoService.getTodoList().snapshotChanges().subscribe(item => {
+    this.todoService.getTodoList().snapshotChanges().subscribe(item => {
       this.todoListArray = [];
       item.forEach(elem => {
         let x = elem.payload.toJSON();
