@@ -1,0 +1,76 @@
+<p>
+  productos works!
+</p>
+
+<div class="container">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="card mt-4">
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-5">
+              <div class="form-group">
+                <label for="codigoProducto">Producto</label>
+                <input type="number" class="form-control" id="codigoProducto">
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+              <div class="form-group">
+                <label for="descripcionProducto">Descripcion</label>
+                <input type="text" class="form-control" id="descripcionProducto">
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label for="precioProducto">Precio</label>
+                <input type="number" class="form-control" id="precioProducto">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label for="selectCategoria">Categoria</label>
+                <select class="custom-select" id="selectCategoria" [(ngModel)]="idCategoria">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let cat of categorias | async">{{cat.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                  <label for="selectMarca">Marca</label>
+                <select class="custom-select" id="selectMarca" [(ngModel)]="idMarca">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let marca of marcas | async">{{marca.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label for="selectMedida">Unidad de Medida</label>
+                <select class="custom-select" id="selectMedida" [(ngModel)]="idMedida">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let medida of medidas | async">{{medida.descripcion}}</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary pull-righ">Guardar</button>
+        </form>
+
+        <ul class="list-group mt-4">
+          <li class="list-group-item list-group-item-action d-flex justify-content-between aling-items-center" *ngFor="let medida of medidas | async">
+            <span class="cursor-hover" (click)="updateTodo(item.$key, item.isChecked)">
+              {{medida.id}} - {{medida.descripcion}}
+            </span>
+            <span class="cursor-hover" (click)="removeTodo(item.$key)">
+              <i class="fas fa-trash"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

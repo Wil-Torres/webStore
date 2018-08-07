@@ -24,6 +24,7 @@ import { MarcasComponent } from './components/marcas/marcas.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { MedidasComponent } from './components/medidas/medidas.component';
 import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NopagefoundComponent } from './components/nopagefound/nopagefound.compo
     MarcasComponent,
     CategoriasComponent,
     MedidasComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,

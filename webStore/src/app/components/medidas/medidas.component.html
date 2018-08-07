@@ -1,3 +1,42 @@
 <p>
   medidas works!
 </p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="descripcionMedidas">Medidas</label>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <input class="form-control gt-spinner-off" type="number" id="codigo" [(ngModel)]="objeto.id" [ngModelOptions]="{standalone: true}">
+              </span>
+              <span class="input-group-btn"></span>
+              <input id="descripcionMedidas" type="text" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}" class="form-control"
+                tabindex="-1">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-toggle="tooltip" title="Limpiar" tabindex="-1">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button type="button" class="btn btn-primary" (click)="guardar()" data-toggle="tooltip" title="guardar" tabindex="-1">
+                  <i class="fas fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+          <ul class="list-group mt-4">
+            <li class="list-group-item list-group-item-action d-flex justify-content-between aling-items-center" *ngFor="let medida of medidas | async">
+              <span class="cursor-hover" (click)="updateTodo(item.$key, item.isChecked)">
+                {{medida.id}} - {{medida.descripcion}}
+              </span>
+              <span class="cursor-hover" (click)="removeTodo(item.$key)">
+                <i class="fas fa-trash"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

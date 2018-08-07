@@ -8,22 +8,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./marcas.component.css']
 })
 export class MarcasComponent implements OnInit {
-  cod: number = 0;
-  desc: string = '';
+  objeto: any = {}
   marcas: Observable<any[]>;
-  constructor(private serviceMarca: WebstoreService) {}
+  constructor(private serviceMarca: WebstoreService) { }
 
   ngOnInit() {
     this.marcas = this.serviceMarca.getMarcas();
   }
-  guardar () {
-    let objetoMarca = {
-      descripcion: this.desc,
-      id: this.cod
-    }
-    alert(this.cod + ' - ' + this.desc) ;
-    this.serviceMarca.addMarcas(objetoMarca);
-
+  guardar() {
+    this.serviceMarca.addMarcas(this.objeto);
   }
 
 }
