@@ -31,7 +31,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
                 <label for="selectCategoria">Categoria</label>
-                <select class="custom-select" id="selectCategoria" [(ngModel)]="idCategoria">
+                <select class="custom-select" id="selectCategoria" [(ngModel)]="idCategoria" [ngModelOptions]="{standalone: true}">
                   <option selected>Choose...</option>
                   <option *ngFor="let cat of categorias | async">{{cat.descripcion}}</option>
                 </select>
@@ -40,7 +40,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
                   <label for="selectMarca">Marca</label>
-                <select class="custom-select" id="selectMarca" [(ngModel)]="idMarca">
+                <select class="custom-select" id="selectMarca" [(ngModel)]="idMarca" [ngModelOptions]="{standalone: true}">
                   <option selected>Choose...</option>
                   <option *ngFor="let marca of marcas | async">{{marca.descripcion}}</option>
                 </select>
@@ -49,7 +49,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
                 <label for="selectMedida">Unidad de Medida</label>
-                <select class="custom-select" id="selectMedida" [(ngModel)]="idMedida">
+                <select class="custom-select" id="selectMedida" [(ngModel)]="idMedida" [ngModelOptions]="{standalone: true}">
                   <option selected>Choose...</option>
                   <option *ngFor="let medida of medidas | async">{{medida.descripcion}}</option>
 
