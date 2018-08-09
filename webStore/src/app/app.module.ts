@@ -25,6 +25,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { MedidasComponent } from './components/medidas/medidas.component';
 import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { EntradasComponent } from './components/entradas/entradas.component';
+import { SalidasComponent } from './components/salidas/salidas.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ProductosComponent } from './components/productos/productos.component';
     CategoriasComponent,
     MedidasComponent,
     NopagefoundComponent,
-    ProductosComponent
+    ProductosComponent,
+    EntradasComponent,
+    SalidasComponent
   ],
   imports: [
     BrowserModule,

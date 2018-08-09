@@ -12,6 +12,7 @@ export class ProductosComponent implements OnInit {
   categorias: Observable<any[]>;
   marcas: Observable<any[]>;
   medidas: Observable<any[]>;
+  objeto: any = {};
 
   constructor( private servicioMaestro: WebstoreService) { }
 
@@ -20,6 +21,17 @@ export class ProductosComponent implements OnInit {
     this.marcas = this.servicioMaestro.getMarcas();
     this.medidas = this.servicioMaestro.getMedidas();
 
+  }
+  alCambiarMedida (item) {
+    console.log(this.marcas)
+    this.marcas.forEach((marca) => {
+      console.log(marca);
+      
+    })
+    
+  }
+  guardar () {
+    this.servicioMaestro.addProducto(this.objeto);
   }
 
 }

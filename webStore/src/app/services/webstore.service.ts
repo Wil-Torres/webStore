@@ -7,6 +7,13 @@ interface objeto {
   id: number;
   descripcion: string;
 }
+interface movimiento {
+  id: number;
+  descripcion: string;
+  fecha: Date;
+  documento: string;
+  detalle: any[];
+}
 
 
 @Injectable({
@@ -14,9 +21,12 @@ interface objeto {
 })
 export class WebstoreService {
   objCollection: AngularFirestoreCollection<objeto>;
+  movCollection: AngularFirestoreCollection<movimiento>;
   marcas: Observable<objeto[]>;
   categorias: Observable<objeto[]>
   medidas: Observable<objeto[]>
+  entradas: Observable<movimiento[]>
+  salidas: Observable<movimiento[]>
   constructor(private afs: AngularFirestore) { }
   getMarcas() {
     this.objCollection = this.afs.collection('marcas');
@@ -49,6 +59,52 @@ export class WebstoreService {
     this.afs.collection('medidas').doc(obj.descripcion).set({
       id: obj.id,
       descripcion: obj.descripcion
+    });
+  }
+  getProductos() {
+    this.objCollection = this.afs.collection('productos');
+    this.medidas = this.objCollection.valueChanges();
+    return this.medidas;
+  }
+  addProducto(obj) {
+    console.log(obj)
+    this.afs.collection('productos').doc(obj.descripcion).set({
+      id: obj.id,
+      descripcion: obj.descripcion,
+      precio: obj.precio,
+      idCategoria: obj.idCategoria,
+      idMarca: obj.idMarca,
+      idMedida: obj.idMedida,
+    });
+  }
+  getEntradas() {
+    this.movCollection = this.afs.collection('entradas');
+    this.entradas = this.movCollection.valueChanges();
+    return this.entradas;
+  }
+  addEntrada(obj) {
+    console.log(obj)
+    this.afs.collection('entradas').doc(obj.id.toString()).set({
+      id: obj.id,
+      descripcion: obj.descripcion,
+      fecha: obj.fecha,
+      documento: obj.documento,
+      detalle: obj.detalle
+    });
+  }
+  getSalidas() {
+    this.objCollection = this.afs.collection('salidas');
+    this.salidas = this.movCollection.valueChanges();
+    return this.salidas;
+  }
+  addSalida(obj) {
+    console.log(obj)
+    this.afs.collection('salidas').doc(obj.id.toString()).set({
+      id: obj.id,
+      descripcion: obj.descripcion, 
+      fecha: obj.fecha,
+      documento: obj.documento,
+      detalle: obj.detalle
     });
   }
   
