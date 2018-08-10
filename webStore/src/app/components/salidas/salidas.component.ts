@@ -17,7 +17,7 @@ export class SalidasComponent implements OnInit {
   constructor( private movimientos: WebstoreService) { }
 
   ngOnInit() {
-
+    this.movimientos.getMovimientos();
   }
   guardar(){
     this.movimientos.addSalida(this.objeto);

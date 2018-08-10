@@ -23,12 +23,8 @@ export class ProductosComponent implements OnInit {
 
   }
   alCambiarMedida (item) {
-    console.log(this.marcas)
     this.marcas.forEach((marca) => {
-      console.log(marca);
-      
     })
-    
   }
   guardar () {
     this.servicioMaestro.addProducto(this.objeto);

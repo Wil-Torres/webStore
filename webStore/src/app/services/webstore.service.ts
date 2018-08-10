@@ -101,12 +101,26 @@ export class WebstoreService {
     console.log(obj)
     this.afs.collection('salidas').doc(obj.id.toString()).set({
       id: obj.id,
-      descripcion: obj.descripcion, 
+      descripcion: obj.descripcion,
       fecha: obj.fecha,
       documento: obj.documento,
       detalle: obj.detalle
     });
   }
-  
+  getMovimientos() {
+    this.afs.collection('entradas').snapshotChanges().subscribe(item => {
+      item.forEach(elem => {
+        console.log('Entrada');
+        console.log(elem.payload.doc.data());
+      });
+    })
+    this.afs.collection('salidas').snapshotChanges().subscribe(item => {
+      item.forEach(elem => {
+        console.log('Salida');
+        console.log(elem.payload.doc.data());
+      });
+    })
 
+
+  }
 }

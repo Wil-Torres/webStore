@@ -27,6 +27,7 @@ import { NopagefoundComponent } from './components/nopagefound/nopagefound.compo
 import { ProductosComponent } from './components/productos/productos.component';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { SalidasComponent } from './components/salidas/salidas.component';
+import { KardexComponent } from './components/kardex/kardex.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SalidasComponent } from './components/salidas/salidas.component';
     NopagefoundComponent,
     ProductosComponent,
     EntradasComponent,
-    SalidasComponent
+    SalidasComponent,
+    KardexComponent
   ],
   imports: [
     BrowserModule,
