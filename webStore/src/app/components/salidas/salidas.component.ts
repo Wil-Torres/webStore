@@ -17,7 +17,7 @@ export class SalidasComponent implements OnInit {
   constructor( private movimientos: WebstoreService) { }
 
   ngOnInit() {
-    this.movimientos.getMovimientos();
+    console.log(this.movimientos.getMovimientos());
   }
   guardar(){
     this.movimientos.addSalida(this.objeto);
@@ -26,5 +26,4 @@ export class SalidasComponent implements OnInit {
     this.objeto.detalle.push(this.temporal)
     this.temporal = {};
   }
-
 }

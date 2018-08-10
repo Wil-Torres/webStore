@@ -15,7 +15,6 @@ interface movimiento {
   detalle: any[];
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -108,19 +107,20 @@ export class WebstoreService {
     });
   }
   getMovimientos() {
-    this.afs.collection('entradas').snapshotChanges().subscribe(item => {
+    let objeto = []
+    this.afs.collection('entradas').snapshotChanges().subscribe((item) => {
       item.forEach(elem => {
-        console.log('Entrada');
-        console.log(elem.payload.doc.data());
+        let coleccion = elem.payload.doc;
+        coleccion.ref.set({tipo: 'E'}, {merge: true})
+        objeto.push(elem.payload.doc.data());
       });
     })
     this.afs.collection('salidas').snapshotChanges().subscribe(item => {
       item.forEach(elem => {
-        console.log('Salida');
-        console.log(elem.payload.doc.data());
+        elem.payload.doc.ref.set({tipo: 'S'}, {merge: true})
+        objeto.push(elem.payload.doc.data());
       });
     })
-
-
+    return objeto;
   }
 }
