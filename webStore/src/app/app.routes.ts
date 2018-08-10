@@ -6,6 +6,7 @@ import { NopagefoundComponent } from './components/nopagefound/nopagefound.compo
 import { ProductosComponent } from './components/productos/productos.component';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { SalidasComponent } from './components/salidas/salidas.component';
+import { KardexComponent } from './components/kardex/kardex.component';
 
 // definir rutas
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     {path:'productos', component: ProductosComponent},
     {path:'entradas', component: EntradasComponent},
     {path:'salidas', component: SalidasComponent},
+    {path:'kardex', component: KardexComponent},
     {path: '**', component: NopagefoundComponent}
 ];
 

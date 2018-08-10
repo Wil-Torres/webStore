@@ -8,17 +8,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./kardex.component.css']
 })
 export class KardexComponent implements OnInit {
-  salidas: Observable<any[]>;
-  entradas: Observable<any[]>;
+  objMovimientos: any = [];
 
-  constructor( private movimientos: WebstoreService) { }
+  constructor(private movimientos: WebstoreService) { }
 
   ngOnInit() {
-    this.salidas = this.movimientos.getSalidas();
-    this.entradas = this.movimientos.getEntradas();
-    this.entradas.forEach(element => {
-      console.log(element);
-    });
+    this.objMovimientos = this.movimientos.getMovimientos();
+    console.log(this.objMovimientos)
   }
 
 }

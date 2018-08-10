@@ -111,14 +111,69 @@ export class WebstoreService {
     this.afs.collection('entradas').snapshotChanges().subscribe((item) => {
       item.forEach(elem => {
         let coleccion = elem.payload.doc;
-        coleccion.ref.set({tipo: 'E'}, {merge: true})
-        objeto.push(elem.payload.doc.data());
+        coleccion.ref.set({ tipo: 'E' }, { merge: true })
+        elem.payload.doc.data()['detalle'].forEach(element => {
+          let data = coleccion.data();
+          objeto.push({
+            descripcion: data['descripcion'],
+            documento: data['documento'],
+            fecha: data['fecha'],
+            id: data['id'],
+            tipo: data['tipo'],
+            idProducto: element.idProducto,
+            precio: element.precio,
+            cantidad: element.cantidad,
+            valorUnitario: element.valorUnitario, 
+            valorTotal: (element.precio * element.cantidad),
+            cantidadTotal: function (indice1, indice2) {
+              console.log(indice1, indice2);
+              if (indice1 === 0) {
+                return (objeto[indice1].cantidad + 0)
+              } else {
+                if(objeto[indice1].tipo === 'S'){
+                  return (objeto[indice2].cantidad - objeto[indice1].cantidad)
+                }else{
+                  return (objeto[indice2].cantidad + objeto[indice1].cantidad)
+                }
+              }
+              
+            }
+          });
+        });
       });
+      console.log(objeto);
     })
     this.afs.collection('salidas').snapshotChanges().subscribe(item => {
       item.forEach(elem => {
-        elem.payload.doc.ref.set({tipo: 'S'}, {merge: true})
-        objeto.push(elem.payload.doc.data());
+        let coleccion = elem.payload.doc;
+        coleccion.ref.set({ tipo: 'S' }, { merge: true })
+        elem.payload.doc.data()['detalle'].forEach(element => {
+          let data = coleccion.data();
+          objeto.push({
+            descripcion: data['descripcion'],
+            documento: data['documento'],
+            fecha: data['fecha'],
+            id: data['id'],
+            tipo: data['tipo'],
+            idProducto: element.idProducto,
+            precio: element.precio,
+            cantidad: element.cantidad,
+            valorUnitario: element.valorUnitario, 
+            valorTotal: (element.precio * element.cantidad),
+            cantidadTotal: function (indice1, indice2) {
+              console.log(indice1, indice2);
+              if (indice1 === 0) {
+                return (objeto[indice1].cantidad + 0)
+              } else {
+                if(objeto[indice1].tipo === 'S'){
+                  return (objeto[indice2].cantidad - objeto[indice1].cantidad)
+                }else{
+                  return (objeto[indice2].cantidad + objeto[indice1].cantidad)
+                }
+              }
+            }
+          });
+        });
       });
     })
     return objeto;

@@ -1,87 +1,96 @@
 <p>
   salidas works!
 </p>
-<p>
-    entradas works!
-  </p>
-  <div class="container">
-    <div class="col-md-12 col-xs-12 col-sm-12">
-      <div class="card mt-4">
-        <div class="card-body">
-          <form (ngSubmit)="guardar()">
-            <div class="row">
-              <div class="col-md-1 col-sm-1 col-xs-1">
-                <div class="form-group">
-                  <label for="entradaId">No.</label>
-                  <input type="number" class="form-control" id="entradaId" [(ngModel)]="objeto.id" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="form-group">
-                  <label for="entradaFecha">Fecha</label>
-                  <input type="date" class="form-control" id="entradaFecha" [(ngModel)]="objeto.fecha" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="form-group">
-                  <label for="entradaDocumento">Documento</label>
-                  <input type="text" class="form-control" id="entradaDocumento" [(ngModel)]="objeto.documento" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-7 col-sm-7 col-xs-7">
-                <div class="form-group">
-                  <label for="descripcionProducto">Descripcion</label>
-                  <input type="text" class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}">
-                </div>
+<div class="container">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="card mt-4">
+      <div class="card-body">
+        <form (ngSubmit)="guardar()">
+          <div class="row">
+            <div class="col-md-1 col-sm-1 col-xs-1">
+              <div class="form-group">
+                <label for="entradaId">No.</label>
+                <input type="number" class="form-control" id="entradaId" [(ngModel)]="objeto.id" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
-            <div class="row">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Valor Unitario</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col"><input type="number" [(ngModel)]="temporal.precio" [ngModelOptions]="{standalone: true}"></th>
-                    <th scope="col"><input type="number" [(ngModel)]="temporal.idProducto" [ngModelOptions]="{standalone: true}"></th>
-                    <th scope="col"><input type="number" [(ngModel)]="temporal.cantidad" [ngModelOptions]="{standalone: true}"></th>
-                    <th scope="col"><input type="number" [(ngModel)]="temporal.valorUnitario" [ngModelOptions]="{standalone: true}"></th>
-                    <th></th>
-                    <th>
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Limpiar" tabindex="-1">
-                          <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button type="button" class="btn btn-primary" (click)="addDetalle()" data-toggle="tooltip" title="guardar" tabindex="-1">
-                          <i class="fas fa-save"></i>
-                        </button>
-                      </span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let detalle of objeto.detalle">
-                    <td>{{$index}}</td>
-                    <td>{{detalle.precio}}</td>
-                    <td>{{detalle.idProducto}}</td>
-                    <td>{{detalle.cantidad}}</td>
-                    <td>{{detalle.valorUnitario}}</td>
-                    <td><button class="btn btn-danger">E</button></td>
-                    <td><button class="btn btn-info">E</button></td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label for="entradaFecha">Fecha</label>
+                <input type="date" class="form-control" id="entradaFecha" [(ngModel)]="objeto.fecha" [ngModelOptions]="{standalone: true}">
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary pull-righ">Guardar</button>
-          </form>
-        </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label for="entradaDocumento">Documento</label>
+                <input type="text" class="form-control" id="entradaDocumento" [(ngModel)]="objeto.documento" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+              <div class="form-group">
+                <label for="descripcionProducto">Descripcion</label>
+                <input type="text" class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Valor Unitario</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">
+                    <input type="number" [(ngModel)]="temporal.precio" [ngModelOptions]="{standalone: true}">
+                  </th>
+                  <th scope="col">
+                    <input type="number" [(ngModel)]="temporal.idProducto" [ngModelOptions]="{standalone: true}">
+                  </th>
+                  <th scope="col">
+                    <input type="number" [(ngModel)]="temporal.cantidad" [ngModelOptions]="{standalone: true}">
+                  </th>
+                  <th scope="col">
+                    <input type="number" [(ngModel)]="temporal.valorUnitario" [ngModelOptions]="{standalone: true}">
+                  </th>
+                  <th></th>
+                  <th>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" data-toggle="tooltip" title="Limpiar" tabindex="-1">
+                        <i class="fas fa-sync-alt"></i>
+                      </button>
+                      <button type="button" class="btn btn-primary" (click)="addDetalle()" data-toggle="tooltip" title="guardar" tabindex="-1">
+                        <i class="fas fa-save"></i>
+                      </button>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let detalle of objeto.detalle">
+                  <td>{{$index}}</td>
+                  <td>{{detalle.precio}}</td>
+                  <td>{{detalle.idProducto}}</td>
+                  <td>{{detalle.cantidad}}</td>
+                  <td>{{detalle.valorUnitario}}</td>
+                  <td>
+                    <button class="btn btn-danger">E</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-info">E</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="submit" class="btn btn-primary pull-righ">Guardar</button>
+        </form>
       </div>
     </div>
   </div>
+</div>
