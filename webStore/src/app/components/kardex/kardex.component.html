@@ -5,44 +5,47 @@
   <div class="col-md-12 col-xs-12 col-sm-12">
     <div class="card mt-4">
       <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th rowspan="2" class="text-center">Fecha</th>
-              <th rowspan="2" class="text-center">Detalle</th>
-              <th colspan="3" class="text-center" style="background-color: greenyellow;">Entradas</th>
-              <th colspan="3" class="text-center" style="background-color:  green;">Salidas</th>
-              <th colspan="3" class="text-center" style="background-color:  limegreen;">Existencia</th>
-            </tr>
-            <tr>
-              <th>Cantidad</th>
-              <th>V/Unitario</th>
-              <th>V/Total</th>
-              <th>Cantidad</th>
-              <th>V/Unitario</th>
-              <th>V/Total</th>
-              <th>Cantidad</th>
-              <th>V/Unitario</th>
-              <th>V/Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let mov of objMovimientos; let i = index" [attr.data-index]="i">
-              <td>{{mov.fecha}}</td>
-              <td>{{mov.descripcion}}</td>
-              <td>{{mov.tipo === 'E' ? mov.cantidad : ''}}</td>
-              <td>{{mov.tipo === 'E' ? mov.valorUnitario : ''}}</td>
-              <td>{{mov.tipo === 'E' ? mov.valorTotal : ''}}</td>
-              <td>{{mov.tipo === 'S' ? mov.cantidad : ''}}</td>
-              <td>{{mov.tipo === 'S' ? mov.valorUnitario : ''}}</td>
-              <td>{{mov.tipo === 'S' ? mov.valorTotal : ''}}</td>
-              <td>{{mov.cantidadTotal(i, i - 1)}}</td>
-              <td>V/Unitario</td>
-              <td>V/Total</td>
-            </tr>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th rowspan="2" class="text-center">Fecha</th>
+                <th rowspan="2" class="text-center">Detalle</th>
+                <th colspan="3" class="text-center" style="background-color: greenyellow;">Entradas</th>
+                <th colspan="3" class="text-center" style="background-color:  green;">Salidas</th>
+                <th colspan="3" class="text-center" style="background-color:  limegreen;">Existencia</th>
+              </tr>
+              <tr>
+                <th>Cantidad</th>
+                <th>V/Unitario</th>
+                <th>V/Total</th>
+                <th>Cantidad</th>
+                <th>V/Unitario</th>
+                <th>V/Total</th>
+                <th>Cantidad</th>
+                <th>V/Unitario</th>
+                <th>V/Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mov of objMovimientos; let i = index" [attr.data-index]="i">
+                <td>{{mov.fecha}}</td>
+                <td>{{mov.descripcion}}</td>
+                <td>{{mov.tipo === 'E' ? mov.cantidad : ''}}</td>
+                <td>{{mov.tipo === 'E' ? mov.valorUnitario : ''}}</td>
+                <td>{{mov.tipo === 'E' ? mov.valorTotal : ''}}</td>
+                <td>{{mov.tipo === 'S' ? mov.cantidad : ''}}</td>
+                <td>{{mov.tipo === 'S' ? mov.valorUnitario : ''}}</td>
+                <td>{{mov.tipo === 'S' ? mov.valorTotal : ''}}</td>
+                <td>{{mov.cantidadTotal(i, i - 1)}}</td>
+                <td>V/Unitario</td>
+                <td>V/Total</td>
+              </tr>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
   </div>
