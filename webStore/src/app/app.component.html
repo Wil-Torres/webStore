@@ -8,14 +8,16 @@
   <a class="nav-link" routerLinkActive="active" routerLink="/entradas">Entradas</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/salidas">Salidas</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/kardex">Kardex</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/ajustes" *ngIf="ajustes.logeado">Ajustes</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!ajustes || !ajustes.logeado">Inciar Session</a>
 </nav>
-<h1>Information Request</h1>
+<!--h1>Information Request</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <input type="text" placeholder="Name" formControlName="name">
   <input type="text" placeholder="Email" formControlName="email">
-  <textarea placeholder="Message" formControlName="message"
+  <textarea placeholder="Message" formControlName="message"></textarea>
   </textarea>
-  <button type="submit" [disabled]="form.invalid">Submit</button></form>
+  <button type="submit" [disabled]="form.invalid">Submit</button></form-->
 <router-outlet></router-outlet>
 <!--div class="container">
   <div class="row">

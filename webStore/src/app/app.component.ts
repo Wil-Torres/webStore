@@ -11,9 +11,23 @@ import { AngularFireDatabase } from '../../node_modules/angularfire2/database';
 export class AppComponent {
   form: FormGroup;
   title = 'app';
+  ajustes: Ajustes = {
+    logeado: false,
+    email: null,
+    displayName: null
+  }
 
   constructor(private fb: FormBuilder, private af: AngularFireDatabase) {
     this.createForm();
+    this.cargarAjustes()
+  }
+  cargarAjustes () {
+    console.log('cargando ajustes');
+    if ( localStorage.getItem('appLogeado') ){
+      this.ajustes = JSON.parse(localStorage.getItem('appLogeado'));
+    }else{
+      console.log('usando valores por default');
+    }
   }
   createForm() {
     this.form = this.fb.group({
@@ -35,4 +49,10 @@ export class AppComponent {
     this.af.database.refFromURL('/messages').push(formRequest);
     this.form.reset();
   }
+}
+interface Ajustes {
+  logeado: boolean,
+  email: String,
+  displayName: String
+
 }

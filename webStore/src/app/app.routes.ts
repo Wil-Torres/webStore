@@ -7,6 +7,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { SalidasComponent } from './components/salidas/salidas.component';
 import { KardexComponent } from './components/kardex/kardex.component';
+import { LoginComponent } from './components/login/login.component';
+import { AjustesComponent } from './components/ajustes/ajustes.component';
 
 // definir rutas
 const appRoutes: Routes = [
@@ -17,6 +19,8 @@ const appRoutes: Routes = [
     {path:'entradas', component: EntradasComponent},
     {path:'salidas', component: SalidasComponent},
     {path:'kardex', component: KardexComponent},
+    {path:'login', component: LoginComponent},
+    {path:'ajustes', component: AjustesComponent},
     {path: '**', component: NopagefoundComponent}
 ];
 

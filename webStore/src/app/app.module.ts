@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth'
 
 // enviroments config
 import { environment } from '../environments/environment';
@@ -28,6 +29,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { SalidasComponent } from './components/salidas/salidas.component';
 import { KardexComponent } from './components/kardex/kardex.component';
+import { LoginComponent } from './components/login/login.component';
+import { AjustesComponent } from './components/ajustes/ajustes.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +43,16 @@ import { KardexComponent } from './components/kardex/kardex.component';
     ProductosComponent,
     EntradasComponent,
     SalidasComponent,
-    KardexComponent
+    KardexComponent,
+    LoginComponent,
+    AjustesComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     APP_ROUTES,
     FormsModule,
     ReactiveFormsModule
