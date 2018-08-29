@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WebstoreService } from '../../services/webstore.service';
 import { Observable } from '../../../../node_modules/rxjs';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Injectable, Inject } from '@angular/core';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class ProductosComponent implements OnInit {
   medidas: Observable<any[]>;
   objeto: any = {};
 
-  constructor( private servicioMaestro: WebstoreService) { }
+  constructor( @Inject(DOCUMENT) private _document, private servicioMaestro: WebstoreService) { }
 
   ngOnInit() {
     this.categorias = this.servicioMaestro.getCategorias();
@@ -28,6 +30,10 @@ export class ProductosComponent implements OnInit {
   }
   guardar () {
     this.servicioMaestro.addProducto(this.objeto);
+  }
+  subirArchivo () {
+    console.log(this._document.getElementsByName('myFile')[0])
+        this.servicioMaestro.setMultiMedia(document.getElementsByName('myFile')[0].files[0]);
   }
 
 }
