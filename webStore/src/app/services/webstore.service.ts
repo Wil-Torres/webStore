@@ -206,7 +206,7 @@ export class WebstoreService {
     });
 
   }
-  setMultiMedia(archivo) {
+  /*setMultiMedia(archivo) {
     let storage = firebase.storage();
     let storageRef = storage.ref();
     let spaceRef = storageRef.child(archivo.name).put(archivo);
@@ -248,5 +248,5 @@ export class WebstoreService {
 
 
 
-  }
+  }*/
 }

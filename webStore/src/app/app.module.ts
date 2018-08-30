@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 
 // enviroments config
@@ -31,6 +32,8 @@ import { SalidasComponent } from './components/salidas/salidas.component';
 import { KardexComponent } from './components/kardex/kardex.component';
 import { LoginComponent } from './components/login/login.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
+import { UploadDirective } from './directivas/upload.directive';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { AjustesComponent } from './components/ajustes/ajustes.component';
     SalidasComponent,
     KardexComponent,
     LoginComponent,
-    AjustesComponent
+    AjustesComponent,
+    UploadDirective,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,7 @@ import { AjustesComponent } from './components/ajustes/ajustes.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     APP_ROUTES,
     FormsModule,
     ReactiveFormsModule

@@ -8,7 +8,7 @@ import { Injectable, Inject } from '@angular/core';
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
-  styles: []
+  styleUrls: ['./productos.component.css',]
 })
 export class ProductosComponent implements OnInit {
   categorias: Observable<any[]>;
@@ -33,7 +33,7 @@ export class ProductosComponent implements OnInit {
   }
   subirArchivo () {
     console.log(this._document.getElementsByName('myFile')[0])
-        this.servicioMaestro.setMultiMedia(document.getElementsByName('myFile')[0].files[0]);
+        //this.servicioMaestro.setMultiMedia(document.getElementsByName('myFile')[0].files[0]);
   }
 
 }
