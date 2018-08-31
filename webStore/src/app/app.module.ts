@@ -34,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { UploadDirective } from './directivas/upload.directive';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { PreviewProductoComponent } from './components/preview-producto/preview-producto.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     LoginComponent,
     AjustesComponent,
     UploadDirective,
-    FileUploadComponent
+    FileUploadComponent,
+    PreviewProductoComponent
   ],
   imports: [
     BrowserModule,

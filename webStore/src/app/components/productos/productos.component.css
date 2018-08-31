@@ -1,6 +1,13 @@
 .gt-valor-sin-descuento{
     text-decoration: line-through;
 }
+.galeria-producto{
+    height: 350px;
+}
+.galeria-producto-baner{
+    height: 60px;
+    width: 100px;
+}
 .rating-stars {
     display: inline-block;
 }
