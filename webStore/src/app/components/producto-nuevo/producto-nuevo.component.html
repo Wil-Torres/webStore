@@ -1,0 +1,66 @@
+<p>
+  producto-nuevo works!
+</p>
+<div class="container">
+  <!--div class="row"-->
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="card mt-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="codigoProducto">Codigo</label>
+              <input class="form-control" type="number" id="codigo" [(ngModel)]="objeto.codigoProducto" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="form-group">
+              <label for="nombreProducto">Nombre de Producto</label>
+              <input class="form-control" type="text" id="nombre" [(ngModel)]="objeto.nombre" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="descripcionProducto">Descripción</label>
+              <textarea class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-group">
+              <li class="list-group-item disabled">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Precio">Precio</label>
+              <input class="form-control" type="number" id="precio" [(ngModel)]="objeto.precio" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="descuentoProducto">Descuento</label>
+              <input class="form-control" type="text" id="descuento" [(ngModel)]="objeto.descuento" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="ratingProducto">Rating</label>
+              <input class="form-control" type="text" id="rating" [(ngModel)]="objeto.rating" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/div-->
+</div>
