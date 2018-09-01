@@ -9,6 +9,8 @@ import { SalidasComponent } from './components/salidas/salidas.component';
 import { KardexComponent } from './components/kardex/kardex.component';
 import { LoginComponent } from './components/login/login.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
+import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nuevo.component';
+import { ProductoEdicionComponent } from './components/producto-nuevo/producto-edicion.component';
 
 // definir rutas
 const appRoutes: Routes = [
@@ -21,6 +23,8 @@ const appRoutes: Routes = [
     {path:'kardex', component: KardexComponent},
     {path:'login', component: LoginComponent},
     {path:'ajustes', component: AjustesComponent},
+    {path:'nuevoProducto', component: ProductoNuevoComponent},
+    {path:'edicionProducto/:id', component: ProductoEdicionComponent},
     {path: '**', component: NopagefoundComponent}
 ];
 

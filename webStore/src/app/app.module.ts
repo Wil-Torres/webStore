@@ -36,6 +36,7 @@ import { UploadDirective } from './directivas/upload.directive';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { PreviewProductoComponent } from './components/preview-producto/preview-producto.component';
 import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nuevo.component';
+import { ProductoEdicionComponent } from './components/producto-nuevo/producto-edicion.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nue
     UploadDirective,
     FileUploadComponent,
     PreviewProductoComponent,
-    ProductoNuevoComponent
+    ProductoNuevoComponent,
+    ProductoEdicionComponent
   ],
   imports: [
     BrowserModule,

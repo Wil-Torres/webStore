@@ -6,60 +6,111 @@
   <div class="col-md-12 col-xs-12 col-sm-12">
     <div class="card mt-4">
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="codigoProducto">Codigo</label>
-              <input class="form-control" type="number" id="codigo" [(ngModel)]="objeto.codigoProducto" [ngModelOptions]="{standalone: true}">
+        <form (ngSubmit)="guardarProducto()">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" href="#producto" data-toggle="tab" role="tab">Producto</a></li>
+            <li class="nav-item"><a class="nav-link" href="#extras" data-toggle="tab" role="tab">Datos Extras</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeria" data-toggle="tab" role="tab">Galeria</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="producto" role="tabpanel">
+              <p>Producto</p>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="codigoProducto">Codigo</label>
+                    <input class="form-control" type="number" id="codigo" [(ngModel)]="objeto.codigoProducto" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <label for="nombreProducto">Nombre de Producto</label>
+                    <input class="form-control" type="text" id="nombre" [(ngModel)]="objeto.nombre" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="descripcionProducto">Descripción</label>
+                    <textarea class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="descripcionProducto">Categoria</label>
+                    <select class="form-control" name="cars" multiple>
+                      <option value="volvo">Volvsdfsfsfdo</option>
+                      <option value="saab">Saab</option>
+                      <option value="opel">Opel</option>
+                      <option value="audi">Audi</option>
+                      <option value="volvo">Volvo</option>
+                      <option value="saab">Saab</option>
+                      <option value="opel">Opel</option>
+                      <option value="audi">Audi</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="Precio">Precio</label>
+                    <input class="form-control" type="number" id="precio" [(ngModel)]="objeto.precio" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="descuentoProducto">Descuento</label>
+                    <input class="form-control" type="text" id="descuento" [(ngModel)]="objeto.descuento" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="ratingProducto">Rating</label>
+                    <input class="form-control" type="text" id="rating" [(ngModel)]="objeto.rating" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="extras" role="tabpanel">
+              <p>Extras</p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="talla">Talla</label>
+                    <input class="form-control" type="text" id="talla" [(ngModel)]="objeto.talla" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="colorProducto">Color de Estilo</label>
+                    <input class="form-control" type="text" id="color" [(ngModel)]="objeto.color" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="galeria" role="tabpanel">
+              <p>Galeria</p>
+              <app-file-upload></app-file-upload>
             </div>
           </div>
-          <div class="col-md-9">
-            <div class="form-group">
-              <label for="nombreProducto">Nombre de Producto</label>
-              <input class="form-control" type="text" id="nombre" [(ngModel)]="objeto.nombre" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="descripcionProducto">Descripción</label>
-              <textarea class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <ul class="list-group">
-              <li class="list-group-item disabled">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="Precio">Precio</label>
-              <input class="form-control" type="number" id="precio" [(ngModel)]="objeto.precio" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="descuentoProducto">Descuento</label>
-              <input class="form-control" type="text" id="descuento" [(ngModel)]="objeto.descuento" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="ratingProducto">Rating</label>
-              <input class="form-control" type="text" id="rating" [(ngModel)]="objeto.rating" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-        </div>
+          <button type="submit">Enviar</button>
+        </form>
       </div>
+      <!--ul class="list-group mt-4">
+        <li class="list-group-item list-group-item-action d-flex justify-content-between aling-items-center" *ngFor="let producto of productos | async">
+          <span class="cursor-hover" (click)="updateTodo(item.$key, item.isChecked)">
+            {{producto.codigoProducto}} - {{producto.nombre}}
+          </span>
+          <span class="cursor-hover" (click)="removeTodo(item.$key)">
+            <i class="fas fa-trash"></i>
+          </span>
+        </li>
+      </ul-->
     </div>
   </div>
   <!--/div-->
