@@ -26,20 +26,24 @@ export class WebstoreProductosService {
     /*this.objCollection = this.afs.collection('productos') */
     
     this.objCollection = this.afs.collection<objeto>('productos');
-    this.objOb = this.objCollection.snapshotChanges().pipe(
-      map( elem => {
-        elem.map( a => {
-          const data = a.payload.doc.data() as objeto;
-          const id = a.payload.doc.id;
-          return [data];
-        })
-      })
-    );
+    let x = this.objCollection.snapshotChanges();
+    x.forEach(producto => {
+      producto.forEach( prod =>{
+          let data = prod.payload.doc.data();
+          let id = prod.payload.doc.id;
+          data['id'] = id;
+          console.log( "ID: ", id, " Data: " , data );
+          });
+    })
     return this.objCollection.doc(id).valueChanges();
     
   }
   addProducto(indice, obj) {
     //return this.afs.collection('productos').doc(indice).set(obj);
     return this.afs.collection('productos').add(obj)
+  }
+  saveProducto(indice, obj) {
+    //return this.afs.collection('productos').doc(indice).set(obj);
+    return this.afs.collection('productos').doc(indice).update(obj);
   }
 }

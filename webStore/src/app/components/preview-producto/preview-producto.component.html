@@ -1,80 +1,6 @@
 <p>
-    productos works!
+    Preview works!
   </p>
-  
-  <div class="container">
-    <div class="col-md-12 col-xs-12 col-sm-12">
-      <div class="card mt-4">
-        <div class="card-body">
-          <form (ngSubmit)="guardar()">
-            <div class="row">
-              <div class="col-md-2 col-sm-2 col-xs-5">
-                <div class="form-group">
-                  <label for="codigoProducto">Producto</label>
-                  <input type="number" class="form-control" id="codigoProducto" [(ngModel)]="objeto.id" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-7 col-sm-7 col-xs-7">
-                <div class="form-group">
-                  <label for="descripcionProducto">Descripcion</label>
-                  <input type="text" class="form-control" id="descripcionProducto" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="form-group">
-                  <label for="precioProducto">Precio</label>
-                  <input type="number" class="form-control" id="precioProducto" [(ngModel)]="objeto.precio" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group">
-                  <label for="selectCategoria">Categoria</label>
-                  <select class="custom-select" id="selectCategoria" [(ngModel)]="objeto.idCategoria" [ngModelOptions]="{standalone: true}">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let cat of categorias | async" [ngValue]="cat.id">{{cat.descripcion}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group">
-                  <label for="selectMarca">Marca</label>
-                  <select class="custom-select" id="selectMarca" [(ngModel)]="objeto.idMarca" [ngModelOptions]="{standalone: true}">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let marca of marcas | async" [ngValue]="marca.id">{{marca.descripcion}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group">
-                  <label for="selectMedida">Unidad de Medida</label>
-                  <select class="custom-select" id="selectMedida" [(ngModel)]="objeto.idMedida" [ngModelOptions]="{standalone: true}" (change)="alCambiarMedida(objeto.idMedida)">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let medida of medidas | async" [ngValue]="medida.id">{{medida.descripcion}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary pull-righ">Guardar</button>
-          </form>
-  
-          <ul class="list-group mt-4">
-            <li class="list-group-item list-group-item-action d-flex justify-content-between aling-items-center" *ngFor="let medida of medidas | async">
-              <span class="cursor-hover" (click)="updateTodo(item.$key, item.isChecked)">
-                {{medida.id}} - {{medida.descripcion}}
-              </span>
-              <span class="cursor-hover" (click)="removeTodo(item.$key)">
-                <i class="fas fa-trash"></i>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- DIRECTIVA PARA UPLOAD DE IMAGENES -->
-  <!--app-file-upload></app-file-upload-->
   <div class="container">
     <div class="col-md-12 col-xs-12 col-sm-12">
       <div class="card mt-4">
@@ -87,7 +13,7 @@
                   <div class="carousel-inner">
                     <div class="carousel-item img-fluid" *ngFor="let itemImg of objProducto.imagenes; index as i" [class.active]="i === 0" [attr.data-slide-number]="i">
                       <img class="d-block w-100 img-fluid galeria-producto"
-                        [src]="itemImg.img"
+                        [src]="itemImg"
                         data-holder-rendered="true">
                     </div>
                   </div>
@@ -100,10 +26,11 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
+                <br>
                 <ul class="carousel-indicators list-inline complemento2">
                   <li class="list-inline-item complemento" *ngFor="let itemImg of objProducto.imagenes; index as i"  [class.active]="i === 0">
                     <a id="carousel-selector-0" [class.selected]="i === 0" [attr.data-slide-to]="i" data-target="#carouselExampleControls">
-                      <img [src]="itemImg.img" class="img-fluid galeria-producto-baner">
+                      <img [src]="itemImg" class="img-fluid galeria-producto-baner">
                     </a>
                   </li>
                   </ul>
@@ -115,7 +42,7 @@
                     class="far fa-star filled"></i><i class="far fa-star filled"></i>
                 </div><span class="text-muted align-middle">&nbsp;&nbsp;5 | 3 customer reviews</span>
                 <h2 class="padding-top-1x text-normal">{{objProducto.nombre}}</h2><span class="h2 d-block">
-                  <del class="text-muted text-normal">{{objProducto.precio}}</del>&nbsp; {{objProducto.precioReal}}</span>
+                  <del class="text-muted text-normal">{{objProducto.precio}}</del>&nbsp; {{objProducto.precio - ((objProducto.precio * objProducto.descuento)/100)}}</span>
                 <p>{{objProducto.descripcion}}</p>
                 <div class="row margin-top-1x">
                   <div class="col-sm-4">
@@ -181,14 +108,7 @@
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="description" role="tabpanel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error blanditiis a, deserunt magnam pariatur
-                      quam suscipit quae. Veniam, deserunt reprehenderit quasi hic recusandae itaque omnis fugiat animi architecto
-                      facilis repellendus. Commodi dolorem, eius consectetur. Amet maiores nemo at nobi s aspernatur velit,
-                      sequi odio, a veritatis inventore autem esse provident in? Placeat, sunt!</p>
-                    <p class="mb-30">Iste assumenda, vitae, aliquam excepturi libero quia ullam quisquam tenetur id sint labore.
-                      Pariatur praesentium velit, fugit facere maxime voluptates optio qui? Quidem obcaecati necessitatibus
-                      rem aspernatur, mollitia, assumenda explicabo numquam minus eos sapiente totam dicta, laborum dolorum!
-                      Vitae distinctio quos non ut fugiat.</p>
+                    <p>{{objProducto.descripcion}}</p>
                     <div class="embed-responsive embed-responsive-16by9">
                       <iframe class="embed-responsive-item" src="//www.youtube.com/embed/B81qd2v6alw?rel=0" allowfullscreen=""></iframe>
                     </div>

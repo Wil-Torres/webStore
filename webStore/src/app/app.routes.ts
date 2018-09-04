@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nuevo.component';
 import { ProductoEdicionComponent } from './components/producto-nuevo/producto-edicion.component';
+import { PreviewProductoComponent } from './components/preview-producto/preview-producto.component';
 
 // definir rutas
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     {path:'ajustes', component: AjustesComponent},
     {path:'nuevoProducto', component: ProductoNuevoComponent},
     {path:'edicionProducto/:id', component: ProductoEdicionComponent},
+    {path:'preview/:id', component: PreviewProductoComponent},
     {path: '**', component: NopagefoundComponent}
 ];
 

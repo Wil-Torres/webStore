@@ -10,6 +10,7 @@ import {ActivatedRoute } from "@angular/router";
 })
 export class ProductoEdicionComponent implements OnInit {
   objeto: any = {}
+  path: string = '';
   productos: Observable<any[]>;
   private selectedId: string;
   
@@ -20,15 +21,17 @@ export class ProductoEdicionComponent implements OnInit {
     console.log('hola xyz')
     this.route.params.subscribe( params => {
       let id = params['id'];
+      this.path = id;
       this.svProducto.getProducto(id).subscribe( producto => {
-        console.log(producto)
         this.objeto =  producto;
       });
     })
   }
 
   guardarProducto(){
-    this.svProducto.addProducto(null, this.objeto).then(producto => {
+    console.log(this.objeto)
+    
+    this.svProducto.saveProducto(this.path, this.objeto).then(producto => {
       console.log(producto)
       
     }, err => {

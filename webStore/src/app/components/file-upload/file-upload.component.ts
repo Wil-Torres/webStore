@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -11,15 +11,23 @@ import { async } from 'rxjs/internal/scheduler/async';
 })
 export class FileUploadComponent implements OnInit {
 
+  @Input('path') public ubicacion:string='';
+  @Input('obj1') public producto:any={}
+  @Output() obj: EventEmitter<any> = new EventEmitter();
+
   task: AngularFireUploadTask;
   porcentaje: Observable<number>;
   snapshot: Observable<any>;
+  productos: Observable<any>;
   downloadURL: Observable<string>;
   isHovering: boolean;
   arrayDownload: any = [];
 
 
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage) { 
+    console.log('Leyenda', this.obj);
+  }
+
   toggleHover(event: boolean) {
     this.isHovering = event
   }
@@ -32,7 +40,7 @@ export class FileUploadComponent implements OnInit {
         console.error('unsupported file type :( ');
         return;
       }
-      const path = `test/${new Date().getTime()}_${file.name}`;
+      const path = `${this.ubicacion}/${new Date().getTime()}_${file.name}`;
       const customMetadata = { app: 'My AngularFire-powered PWA!' };
       const fileRef = this.storage.ref(path);
       this.task = this.storage.upload(path, file, { customMetadata })
@@ -43,6 +51,8 @@ export class FileUploadComponent implements OnInit {
           finalize(async () => {
             fileRef.getDownloadURL().toPromise().then(url => {
               this.arrayDownload.push(url);
+              this.producto.imagenes = this.arrayDownload;
+              this.obj.emit(this.producto);
             });
             return this.downloadURL = fileRef.getDownloadURL()
           })
@@ -58,6 +68,8 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.producto)
+    this.arrayDownload = this.producto.imagenes || [];
   }
 
 }

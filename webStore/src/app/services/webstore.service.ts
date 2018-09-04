@@ -24,9 +24,12 @@ export class WebstoreService {
   marcas: Observable<objeto[]>;
   categorias: Observable<objeto[]>
   medidas: Observable<objeto[]>
+  productos: Observable<objeto[]>
   entradas: Observable<movimiento[]>
   salidas: Observable<movimiento[]>
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) {
+
+   }
   getMarcas() {
     this.objCollection = this.afs.collection('marcas');
     this.marcas = this.objCollection.valueChanges();
@@ -61,9 +64,13 @@ export class WebstoreService {
     });
   }
   getProductos() {
-    this.objCollection = this.afs.collection('productos');
-    this.medidas = this.objCollection.valueChanges();
-    return this.medidas;
+    this.objCollection = this.afs.collection('productos', ref => {
+      let query: firebase.firestore.Query = ref
+      query = query.where('categorias', 'array-contains', '4').where('categorias', 'array-contains', '3');
+      return query;
+    });
+    this.productos = this.objCollection.valueChanges();
+    return this.productos;
   }
   addProducto(obj) {
     console.log(obj)
@@ -75,6 +82,15 @@ export class WebstoreService {
       idMarca: obj.idMarca,
       idMedida: obj.idMedida,
     });
+  }
+  removeProducto(key){
+    console.log(key)
+    this.afs.collection('productos').doc(key).delete().then(res => {
+      console.log(res)
+    }, err => {
+      console.error(err);
+    });
+
   }
   getEntradas() {
     this.movCollection = this.afs.collection('entradas');
