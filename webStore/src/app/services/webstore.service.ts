@@ -27,9 +27,45 @@ export class WebstoreService {
   productos: Observable<objeto[]>
   entradas: Observable<movimiento[]>
   salidas: Observable<movimiento[]>
+  contenedor: any = {};
+
   constructor(private afs: AngularFirestore) {
 
-   }
+  }
+  escuchaCarrito(item, accion): Observable<{}> {
+    let obs = new Observable(observer => {
+      let contador = 0;
+      let contenedor = JSON.parse(localStorage.getItem('cartShop'));
+      if (accion === 'A') {
+        if (!contenedor.carrito) {
+          contenedor.carrito = [];
+
+        } else {
+          contenedor.carrito.push(item);
+        }
+      }else if ( accion === 'B'){
+        console.log('aqui')
+        contenedor.carrito.splice(item, 1)
+      }
+      localStorage.setItem('cartShop', JSON.stringify(contenedor));
+      let intervalo = setInterval(() => {
+        contador += 1;
+        observer.next(contenedor)
+        if (contador === 3) {
+          clearInterval(intervalo);
+          observer.complete();
+        }
+      }, 1000)
+
+    });
+    return obs;
+  }
+  addItemCart(item) {
+    return this.escuchaCarrito(item, 'A')
+  }
+  removeItemCart(item) {
+    return this.escuchaCarrito(item, 'B')
+  }
   getMarcas() {
     this.objCollection = this.afs.collection('marcas');
     this.marcas = this.objCollection.valueChanges();
@@ -63,10 +99,34 @@ export class WebstoreService {
       descripcion: obj.descripcion
     });
   }
-  getProductos() {
+  getProductos(orden, param, value) {
     this.objCollection = this.afs.collection('productos', ref => {
       let query: firebase.firestore.Query = ref
-      query = query.where('categorias', 'array-contains', '4').where('categorias', 'array-contains', '3');
+      switch (param) {
+        case 1:
+          query = query.where('categorias', 'array-contains', value);
+          break;
+        case 2:
+          query = query.where('marca', '>=', value);
+          break;
+      }
+      switch (orden) {
+        case 1:
+          query = query.orderBy("precio", "asc");
+          break;
+        case 2:
+          query = query.orderBy('precio', 'desc');
+          break;
+        case 3:
+          query = query.orderBy('rating');
+          break;
+        case 4:
+          query = query.orderBy('nombre', 'asc');
+          break;
+        case 4:
+          query = query.orderBy('nombre', 'desc');
+          break;
+      }
       return query;
     });
     this.productos = this.objCollection.valueChanges();
@@ -83,7 +143,7 @@ export class WebstoreService {
       idMedida: obj.idMedida,
     });
   }
-  removeProducto(key){
+  removeProducto(key) {
     console.log(key)
     this.afs.collection('productos').doc(key).delete().then(res => {
       console.log(res)
@@ -139,20 +199,20 @@ export class WebstoreService {
             idProducto: element.idProducto,
             precio: element.precio,
             cantidad: element.cantidad,
-            valorUnitario: element.valorUnitario, 
+            valorUnitario: element.valorUnitario,
             valorTotal: (element.precio * element.cantidad),
             cantidadTotal: function (indice1, indice2) {
               console.log(indice1, indice2);
               if (indice1 === 0) {
                 return (objeto[indice1].cantidad + 0)
               } else {
-                if(objeto[indice1].tipo === 'S'){
+                if (objeto[indice1].tipo === 'S') {
                   return (objeto[indice2].cantidad - objeto[indice1].cantidad)
-                }else{
+                } else {
                   return (objeto[indice2].cantidad + objeto[indice1].cantidad)
                 }
               }
-              
+
             }
           });
         });
@@ -174,16 +234,16 @@ export class WebstoreService {
             idProducto: element.idProducto,
             precio: element.precio,
             cantidad: element.cantidad,
-            valorUnitario: element.valorUnitario, 
+            valorUnitario: element.valorUnitario,
             valorTotal: (element.precio * element.cantidad),
             cantidadTotal: function (indice1, indice2) {
               console.log(indice1, indice2);
               if (indice1 === 0) {
                 return (objeto[indice1].cantidad + 0)
               } else {
-                if(objeto[indice1].tipo === 'S'){
+                if (objeto[indice1].tipo === 'S') {
                   return (objeto[indice2].cantidad - objeto[indice1].cantidad)
-                }else{
+                } else {
                   return (objeto[indice2].cantidad + objeto[indice1].cantidad)
                 }
               }
@@ -194,15 +254,15 @@ export class WebstoreService {
     })
     return objeto;
   }
-  getLogin(email:any, contrasenia:any){
-    firebase.auth().signInWithEmailAndPassword(email, contrasenia).catch(function(error) {
+  getLogin(email: any, contrasenia: any) {
+    firebase.auth().signInWithEmailAndPassword(email, contrasenia).catch(function (error) {
       console.log(error);
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
     });
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         console.log(user)
         // User is signed in.

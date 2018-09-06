@@ -1,0 +1,35 @@
+<div class="container">
+    <!--div class="row"-->
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <div class="card mt-4">
+            <div class="card-body">
+                <form (ngSubmit)="guardarProducto()">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" href="#facturar" data-toggle="tab" role="tab">Facturacion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#envio" data-toggle="tab" role="tab">Envio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pago" data-toggle="tab" role="tab">Pago</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#confirmar" data-toggle="tab" role="tab">Confirmar</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="facturar" role="tabpanel">
+                            Facturar
+                            <app-direccion></app-direccion>
+                        </div>
+                        <div class="tab-pane fade" id="envio" role="tabpanel">
+                            Enviar
+                            <app-shipping></app-shipping>
+                        </div>
+                        <div class="tab-pane fade" id="pago" role="tabpanel">
+                            Pagar
+                            <app-payment></app-payment>
+                        </div>
+                        <div class="tab-pane fade" id="confirmar" role="tabpanel">
+                            Confirmar
+                            <app-review></app-review>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

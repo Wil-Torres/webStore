@@ -17,14 +17,18 @@ export class ProductosComponent implements OnInit {
   medidas: Observable<any[]>;
   productos: Observable<any[]>;
   objeto: any = {};
+  orden: number;
+  compra: any = [];
 
   constructor( @Inject(DOCUMENT) private _document, private servicioMaestro: WebstoreService, private router: Router) { }
 
   ngOnInit() {
+    this.orden = 0; // inicalizamos sin orden
     this.categorias = this.servicioMaestro.getCategorias();
     this.marcas = this.servicioMaestro.getMarcas();
     this.medidas = this.servicioMaestro.getMedidas();
-    this.productos = this.servicioMaestro.getProductos();
+    this.productos = this.servicioMaestro.getProductos(null, null, null);
+    this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
 
   }
   alCambiarMedida (item) {
@@ -38,9 +42,34 @@ export class ProductosComponent implements OnInit {
     this.servicioMaestro.removeProducto(key)
   }
   preview(id) {
-    this.router.navigate(['/preview', '5uryffoGwj0ePibqCExs']);
+    this.router.navigate(['/preview', id]);
   }
-  agregarACesta() {
-    alert('en construccion');
+  agregarACesta(item) {
+    this.servicioMaestro.addItemCart(item).subscribe(res => {
+      this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
+    })
   }
+  borrarCompra(item){
+    this.servicioMaestro.removeItemCart(item).subscribe(res => {
+      this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
+    })
+  }
+  procesarCompra () {
+    this.router.navigate(['/procesar']);
+  }
+
+  /* Filtros */
+  filtrarCategoria (item) {
+    this.productos = this.servicioMaestro.getProductos(null, 1, item);
+  }
+  filtrarMarca (item) {
+    this.productos = this.servicioMaestro.getProductos(null, 2, item);
+  }
+  limpiarFiltro () {
+    this.productos = this.servicioMaestro.getProductos(null, null, null);
+  }
+  ordenarProductos (orden) {
+    this.productos = this.servicioMaestro.getProductos(orden, null, null);
+  }
+
 }

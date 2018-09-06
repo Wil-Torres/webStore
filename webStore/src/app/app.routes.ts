@@ -12,6 +12,9 @@ import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nuevo.component';
 import { ProductoEdicionComponent } from './components/producto-nuevo/producto-edicion.component';
 import { PreviewProductoComponent } from './components/preview-producto/preview-producto.component';
+import { ProcesarCompraComponent } from './components/procesar-compra/procesar-compra.component';
+import { CartShoppingComponent } from './components/complementos/cart-shopping/cart-shopping.component';
+
 
 // definir rutas
 const appRoutes: Routes = [
@@ -27,6 +30,8 @@ const appRoutes: Routes = [
     {path:'nuevoProducto', component: ProductoNuevoComponent},
     {path:'edicionProducto/:id', component: ProductoEdicionComponent},
     {path:'preview/:id', component: PreviewProductoComponent},
+    {path:'procesar', component: ProcesarCompraComponent},
+    {path:'carrito', component: CartShoppingComponent},
     {path: '**', component: NopagefoundComponent}
 ];
 

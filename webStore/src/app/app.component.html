@@ -11,6 +11,16 @@
   <a class="nav-link" routerLinkActive="active" routerLink="/ajustes" *ngIf="ajustes.logeado">Ajustes</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!ajustes || !ajustes.logeado">Inciar Session</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/nuevoProducto">Nuevo Producto</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/procesar">Procesar</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/carrito">Carrito</a>
+  <div class="dropdown1">
+    <span>Mouse over me</span>
+    <div class="dropdown-content">
+      <p>Hello World!</p>
+      
+      <app-cart-shopping></app-cart-shopping>
+    </div>
+  </div>
 </nav>
 <!--h1>Information Request</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -20,6 +30,8 @@
   </textarea>
   <button type="submit" [disabled]="form.invalid">Submit</button></form-->
 <router-outlet></router-outlet>
+
+
 <!--div class="container">
   <div class="row">
     <div class="col-md-6">

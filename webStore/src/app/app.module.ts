@@ -37,6 +37,12 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { PreviewProductoComponent } from './components/preview-producto/preview-producto.component';
 import { ProductoNuevoComponent } from './components/producto-nuevo/producto-nuevo.component';
 import { ProductoEdicionComponent } from './components/producto-nuevo/producto-edicion.component';
+import { ProcesarCompraComponent } from './components/procesar-compra/procesar-compra.component';
+import { DireccionComponent } from './components/complementos/direccion/direccion.component';
+import { PaymentComponent } from './components/complementos/payment/payment.component';
+import { ReviewComponent } from './components/complementos/review/review.component';
+import { ShippingComponent } from './components/complementos/shipping/shipping.component';
+import { CartShoppingComponent } from './components/complementos/cart-shopping/cart-shopping.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +62,13 @@ import { ProductoEdicionComponent } from './components/producto-nuevo/producto-e
     FileUploadComponent,
     PreviewProductoComponent,
     ProductoNuevoComponent,
-    ProductoEdicionComponent
+    ProductoEdicionComponent,
+    ProcesarCompraComponent,
+    DireccionComponent,
+    PaymentComponent,
+    ReviewComponent,
+    ShippingComponent,
+    CartShoppingComponent
   ],
   imports: [
     BrowserModule,

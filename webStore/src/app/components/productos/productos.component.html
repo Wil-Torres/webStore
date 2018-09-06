@@ -72,9 +72,9 @@
       </div>
     </div>
   </div-->
-<div class="container">
-  <div class="col-md-4 col-xs-12 col-sm-12">
-    <div class="card" *ngFor="let producto of productos | async">
+<!--div class="row">
+  <div class="col-md-3 col-xs-12 col-sm-12" *ngFor="let producto of productos | async">
+    <div class="card" style="width: 18rem;">
       <img class="card-img-top" [src]="producto.imagenes[0]" alt="Card image cap">
       <div class="card-body" (click)="preview(producto.id)">
         <h5 class="card-title">{{producto.name}}</h5>
@@ -82,7 +82,130 @@
         <p class="card-text">Antes: <del class="text-muted text-normal">{{producto.precio}}</del>&nbsp; {{producto.precio
           - ((producto.precio * producto.descuento)/100)}}</p>
       </div>
-      <a  (click)="agregarACesta()" class="btn btn-primary">Go somewhere</a>
+      <a (click)="agregarACesta()" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div-->
+<div class="container card col-md-12  mb-1" style="background-color: antiquewhite">
+  <div class="row">
+    <!-- Products-->
+    <div class="col-xl-9 col-lg-8 order-lg-2">
+      <!-- Shop Toolbar-->
+      <div class="shop-toolbar padding-bottom-1x mb-2">
+        <div class="column">
+          <div class="shop-sorting">
+            <label for="sorting">Sort by:</label>
+            <select class="form-control" id="sorting" [(ngModel)]="orden" [ngModelOptions]="{standalone: true}" (change)="ordenarProductos(orden)">
+              <option [ngValue]="0">-- Sin Seleccionar --</option>
+              <option [ngValue]="1">Bajo - Alto Precio</option>
+              <option [ngValue]="2">Alto - Bajo Precio</option>
+              <option [ngValue]="3">Por Rating</option>
+              <option [ngValue]="4">Orden A - Z</option>
+              <option [ngValue]="5">Orden Z - A</option>
+            </select><span class="text-muted">Showing:&nbsp;</span><span>1 - 10 items</span>
+          </div>
+        </div>
+        <div class="column">
+          <button class="btn btn-outline-primary btn-sm" type="button" (click)="limpiarFiltro()">Limpiar Filtro</button>
+        </div>
+      </div>
+      <!-- Products Grid-->
+      <div class="isotope-grid cols-3 mb-2" style="position: relative; height: 1438.73px;">
+        <!-- Product-->
+        <div class="row">
+          <div class="col-md-4 col-xs-12 col-sm-12" *ngFor="let producto of productos | async">
+            <div class="product-badge text-danger">{{producto.descuento}}% Menos</div>
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top tamanio-img" [src]="producto.imagenes[0]" alt="Card image cap">
+              <div class="card-body" (click)="preview(producto.id)">
+                <h5 class="card-title">{{producto.name}}</h5>
+                <p class="card-text">{{producto.descripcion | slice:1:100}}{{producto.descripcion.length > 100 ? '...' :
+                  ''}}
+                </p>
+                <p class="card-text">Antes: <del class="text-muted text-normal">{{producto.precio}}</del>&nbsp; {{producto.precio
+                  - ((producto.precio * producto.descuento)/100)}}</p>
+              </div>
+              <!-- a (click)="agregarACesta()" class="btn btn-primary">Go somewhere</a-->
+              <button class="btn btn-outline-primary btn-sm" (click)="agregarACesta(producto)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination-->
+    </div>
+    <!-- Sidebar          -->
+    <div class="col-xl-3 col-lg-4 order-lg-1">
+      <aside class="sidebar sidebar-offcanvas">
+        <!-- Widget Categories-->
+        <section class="widget widget-categories">
+          <h3 class="widget-title">Categorias</h3>
+          <ul>
+            <li class="has-children expanded" *ngFor="let cat of categorias | async"><a>{{cat.descripcion}}</a><span>(1138)</span>
+              <ul>
+                <li *ngFor="let subcat of cat.subCategorias"><a>{{subcat.descripcion}}</a><span>(508)</span>
+                  <ul>
+                    <li *ngFor="let item of subcat.items"><a (click)="filtrarCategoria(item)">{{item}}</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <!-- Widget Price Range-->
+        <section class="widget widget-categories">
+          <h3 class="widget-title">Price Range</h3>
+          <form class="price-range-slider" method="post" data-start-min="250" data-start-max="650" data-min="0" data-max="1000" data-step="1">
+            <div class="ui-range-slider noUi-target noUi-ltr noUi-horizontal noUi-background">
+              <div class="noUi-base">
+                <div class="noUi-origin noUi-connect" style="left: 25%;">
+                  <div class="noUi-handle noUi-handle-lower"></div>
+                </div>
+                <div class="noUi-origin noUi-background" style="left: 65%;">
+                  <div class="noUi-handle noUi-handle-upper"></div>
+                </div>
+              </div>
+            </div>
+            <footer class="ui-range-slider-footer">
+              <div class="column">
+                <button class="btn btn-outline-primary btn-sm" type="submit">Filter</button>
+              </div>
+              <div class="column">
+                <div class="ui-range-values">
+                  <div class="ui-range-value-min">$<span>250</span>
+                    <input type="hidden" value="250">
+                  </div>&nbsp;-&nbsp;
+                  <div class="ui-range-value-max">$<span>650</span>
+                    <input type="hidden" value="650">
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </form>
+        </section>
+        <!-- Widget Brand Filter-->
+        <section class="widget">
+          <h3 class="widget-title">Filtrar por Marca</h3>
+          <div class="custom-control custom-checkbox" *ngFor="let marca of marcas | async">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="marca.seleccion" [ngModelOptions]="{standalone: true}"
+                    (change)="filtrarMarca(marca.descripcion)">
+                </div>
+                <span><label class="">{{marca.descripcion}}&nbsp;<span class="text-muted">(254)</span></label></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Widget Size Filter-->
+        <section class="widget">
+          <h3 class="widget-title">Filtro por Presentacion</h3>
+          <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" type="checkbox" id="xl">
+            <label class="custom-control-label" for="xl">XL&nbsp;<span class="text-muted">(208)</span></label>
+          </div>
+        </section>
+      </aside>
     </div>
   </div>
 </div>

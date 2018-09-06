@@ -20,6 +20,9 @@ export class AppComponent {
   constructor(private fb: FormBuilder, private af: AngularFireDatabase) {
     this.createForm();
     this.cargarAjustes()
+    if ( !localStorage.getItem('cartShop') ){
+      window.localStorage.setItem('cartShop', JSON.stringify({carrito: []}));
+    }
   }
   cargarAjustes () {
     console.log('cargando ajustes');
