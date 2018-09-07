@@ -125,6 +125,10 @@
                 <p class="card-text">Antes: <del class="text-muted text-normal">{{producto.precio}}</del>&nbsp; {{producto.precio
                   - ((producto.precio * producto.descuento)/100)}}</p>
               </div>
+              <div class="card-body" style="margin-top: -30px;">
+                Cantidad: <span><input type="number" style="width: 80px" [(ngModel)]="producto.cantidad"
+                      [ngModelOptions]="{standalone: true}"></span>
+              </div>
               <!-- a (click)="agregarACesta()" class="btn btn-primary">Go somewhere</a-->
               <button class="btn btn-outline-primary btn-sm" (click)="agregarACesta(producto)">Add to Cart</button>
             </div>

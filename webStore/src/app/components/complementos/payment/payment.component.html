@@ -5,7 +5,8 @@
   <div class="card">
     <div class="card-header" role="tab">
       <h6><a href="#card" data-toggle="collapse" class="" aria-expanded="true"><i class="icon-columns"></i>Pay with Credit
-          Card</a></h6>
+          Card
+        </a></h6>
     </div>
     <div class="collapse show" id="card" data-parent="#accordion" role="tabpanel">
       <div class="card-body">
@@ -51,16 +52,16 @@ thru">••/••</div>
         </div>
         <form class="interactive-credit-card row">
           <div class="form-group col-sm-6">
-            <input class="form-control" type="text" name="number" placeholder="Card Number" required="">
+            <input class="form-control" type="text" name="number" placeholder="Card Number" required="" [(ngModel)]="objeto.tarjetaNumero" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-sm-6">
-            <input class="form-control" type="text" name="name" placeholder="Full Name" required="">
+            <input class="form-control" type="text" name="name" placeholder="Full Name" required="" [(ngModel)]="objeto.nombreCompleto" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-sm-3">
-            <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required="">
+            <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required="" [(ngModel)]="objeto.vencimiento" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-sm-3">
-            <input class="form-control" type="text" name="cvc" placeholder="CVC" required="">
+            <input class="form-control" type="text" name="cvc" placeholder="CVC" required="" [(ngModel)]="objeto.autorizacion" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="col-sm-6">
             <button class="btn btn-outline-primary btn-block margin-top-none" type="submit">Submit</button>
@@ -79,12 +80,12 @@ thru">••/••</div>
         <form class="row" method="post">
           <div class="col-sm-6">
             <div class="form-group">
-              <input class="form-control" type="email" placeholder="E-mail" required="">
+              <input class="form-control" type="email" placeholder="E-mail" required="" [(ngModel)]="objeto.email" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <input class="form-control" type="password" placeholder="Password" required="">
+              <input class="form-control" type="password" placeholder="Password" required="" [(ngModel)]="objeto.pass" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-12">

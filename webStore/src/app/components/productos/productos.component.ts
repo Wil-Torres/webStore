@@ -45,6 +45,11 @@ export class ProductosComponent implements OnInit {
     this.router.navigate(['/preview', id]);
   }
   agregarACesta(item) {
+    if( !item.cantidad || item.cantidad < 0){
+      console.warn('debe definir una cantidad ')
+      return
+
+    }
     this.servicioMaestro.addItemCart(item).subscribe(res => {
       this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
     })

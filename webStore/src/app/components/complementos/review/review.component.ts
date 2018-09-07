@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-review',
@@ -8,14 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class ReviewComponent implements OnInit {
   compra: any = [];
 
-  constructor() {
+  constructor(private router: Router) {
     this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
    }
 
   ngOnInit() {
   }
   editarCarrito() {
-    alert('En construccion');
+    this.router.navigate(['/carrito']);
   } 
 
 }

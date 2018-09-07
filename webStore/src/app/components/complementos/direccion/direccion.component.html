@@ -1,5 +1,5 @@
 <p>
-  direccion works!
+    direccion works!
 </p>
 <div class="card col-xl-12 col-lg-12">
     <h4>Direccion de Facturacion</h4>
@@ -8,13 +8,13 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-fn">Nombre</label>
-                <input class="form-control" type="text" id="checkout-fn">
+                <input class="form-control" type="text" id="checkout-fn" [(ngModel)]="objeto.nombre" [ngModelOptions]="{standalone: true}" required>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="checkout-ln">Apeellidos</label>
-                <input class="form-control" type="text" id="checkout-ln">
+                <label for="checkout-ln">Apellidos</label>
+                <input class="form-control" type="text" id="checkout-ln" [(ngModel)]="objeto.apeelido" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
     </div>
@@ -22,13 +22,13 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-email">Correo Electronico</label>
-                <input class="form-control" type="email" id="checkout-email">
+                <input class="form-control" type="email" id="checkout-email" [(ngModel)]="objeto.correoElectronico" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-phone">Numero Telefonico</label>
-                <input class="form-control" type="text" id="checkout-phone">
+                <input class="form-control" type="text" id="checkout-phone" [(ngModel)]="objeto.telefono" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
     </div>
@@ -36,15 +36,15 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-company">Compania</label>
-                <input class="form-control" type="text" id="checkout-company">
+                <input class="form-control" type="text" id="checkout-company" [(ngModel)]="objeto.compania" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-country">Pais</label>
-                <select class="form-control" id="checkout-country">
+                <select class="form-control" id="checkout-country" [(ngModel)]="objeto.pais" [ngModelOptions]="{standalone: true}">
                     <option>Choose country</option>
-                    <option>Guatemala</option>
+                    <option [value]="1">Guatemala</option>
                 </select>
             </div>
         </div>
@@ -53,20 +53,20 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-city">Departamento</label>
-                <select class="form-control" id="checkout-city">
+                <select class="form-control" id="checkout-city" [(ngModel)]="objeto.departamento" [ngModelOptions]="{standalone: true}">
                     <option>Choose city</option>
-                    <option>Guatemala</option>
-                    <option>Escuintla</option>
-                    <option>Jutiapa</option>
-                    <option>San Marcos</option>
-                    <option>Coban</option>
+                    <option [value]="1">Guatemala</option>
+                    <option [value]="2">Escuintla</option>
+                    <option [value]="3">Jutiapa</option>
+                    <option [value]="4">San Marcos</option>
+                    <option [value]="5">Coban</option>
                 </select>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-zip">Codigo Postal</label>
-                <input class="form-control" type="text" id="checkout-zip">
+                <input class="form-control" type="text" id="checkout-zip" [(ngModel)]="objeto.codigoPostal" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
     </div>
@@ -74,36 +74,20 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-address1">Direccion</label>
-                <input class="form-control" type="text" id="checkout-address1">
+                <input class="form-control" type="text" id="checkout-address1" [(ngModel)]="objeto.direccionPrincipal" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="checkout-address2">Direccion Alternativa</label>
-                <input class="form-control" type="text" id="checkout-address2">
+                <input class="form-control" type="text" id="checkout-address2" [(ngModel)]="objeto.direccionAlterna" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
     </div>
     <h4>Direccion de Envio</h4>
     <hr>
-    <div class="form-group">
-        <label for="same_address">La misma que la direccion de facturacion</label>
-        <div>
-            <input class="form-control" type="checkbox" id="same_address" checked="">
-        </div>
-    </div>
-    <div class="row">
-        <div class="float-left">
-            <a class="btn btn-outline-secondary float-left" >
-                <i class="fas fa-arrow-left"></i>
-                <span class="hidden-xs">&nbsp;Regresar</span>
-            </a>
-        </div>
-        <div class="float-right">
-            <a class="btn btn-primary float-right">
-                <span class="hidden-xs">Continuar&nbsp;</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="same_address" [(ngModel)]="objeto.checkeaEnvio" [ngModelOptions]="{standalone: true}">
+        <label class="custom-control-label" for="same_address">La misma que la direccion de facturacion</label>
     </div>
 </div>

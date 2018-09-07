@@ -18,7 +18,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="courier" name="shipping-method" checked="">
+              <input class="custom-control-input" type="radio" id="courier" name="shipping-method" [value]="1" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="courier"></label>
             </div>
           </td>
@@ -30,7 +30,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="local" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="local" name="shipping-method" [value]="2" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="local"></label>
             </div>
           </td>
@@ -42,7 +42,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="flat" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="flat" name="shipping-method" [value]="3" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="flat"></label>
             </div>
           </td>
@@ -55,7 +55,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="ups" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="ups" name="shipping-method" [value]="4" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="ups"></label>
             </div>
           </td>
@@ -68,7 +68,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="pickup" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="pickup" name="shipping-method" [value]="5" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="pickup"></label>
             </div>
           </td>
@@ -80,7 +80,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="locker" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="locker" name="shipping-method" [value]="6" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="locker"></label>
             </div>
           </td>
@@ -92,7 +92,7 @@
         <tr>
           <td>
             <div class="custom-control custom-radio mb-0">
-              <input class="custom-control-input" type="radio" id="global" name="shipping-method">
+              <input class="custom-control-input" type="radio" id="global" name="shipping-method" [(ngModel)]="objeto.envio" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for="global"></label>
             </div>
           </td>
@@ -103,19 +103,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="row">
-    <div class="float-left">
-      <a class="btn btn-outline-secondary float-left">
-        <i class="fas fa-arrow-left"></i>
-        <span class="hidden-xs">&nbsp;Regresar</span>
-      </a>
-    </div>
-    <div class="float-right">
-      <a class="btn btn-primary float-right">
-        <span class="hidden-xs">Continuar&nbsp;</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
   </div>
 </div>

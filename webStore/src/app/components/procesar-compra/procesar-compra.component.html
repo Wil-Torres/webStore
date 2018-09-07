@@ -1,5 +1,4 @@
-<div class="container">
-    <!--div class="row"-->
+<!--div class="container">
     <div class="col-md-12 col-xs-12 col-sm-12">
         <div class="card mt-4">
             <div class="card-body">
@@ -28,6 +27,44 @@
                             <app-review></app-review>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div-->
+<div class="container">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <div class="card mt-4">
+            <div class="card-body">
+                <form (ngSubmit)="guardarProducto()">
+                    <h1>Confirmar tu Compra</h1>
+                    <div class="tab">
+                        <app-direccion [obj1]="confirmacion.facturacion" (obj)="confirmacion.facturacion"></app-direccion>
+                    </div>
+                    <div class="tab">
+                        <app-shipping [obj1]="confirmacion.envio" (obj)="confirmacion.envio"></app-shipping>
+                    </div>
+                    <div class="tab">
+                        <app-payment [obj1]="confirmacion.pago" (obj)="confirmacion.pago"></app-payment>
+                    </div>
+                    <div class="tab">
+                        <app-review></app-review>
+                    </div>
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button type="button" id="prevBtn" (click)="nextPrev(-1)">Regresar</button>
+                            <button type="button" id="nextBtn" (click)="nextPrev(1)">Siguiente</button>
+                            <button type="button" (click)="consulta()">consultar</button>
+                        </div>
+                    </div>
+                    <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+
                 </form>
             </div>
         </div>

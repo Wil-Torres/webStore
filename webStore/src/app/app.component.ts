@@ -23,6 +23,14 @@ export class AppComponent {
     if ( !localStorage.getItem('cartShop') ){
       window.localStorage.setItem('cartShop', JSON.stringify({carrito: []}));
     }
+    if ( !sessionStorage.getItem('confirmShop') ){
+      window.sessionStorage.setItem('confirmShop', JSON.stringify(
+        {
+          facturacion: {},
+          envio:null,
+          pago: {}
+        }));
+    }
   }
   cargarAjustes () {
     console.log('cargando ajustes');

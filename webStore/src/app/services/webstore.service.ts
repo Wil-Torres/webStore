@@ -36,14 +36,27 @@ export class WebstoreService {
     let obs = new Observable(observer => {
       let contador = 0;
       let contenedor = JSON.parse(localStorage.getItem('cartShop'));
-      if (accion === 'A') {
+      if (accion === 'A') { // Agregar al carrito
         if (!contenedor.carrito) {
           contenedor.carrito = [];
-
         } else {
-          contenedor.carrito.push(item);
+          let x = contenedor.carrito.findIndex(elem => {
+            return elem.id === item.id
+          });
+          if( typeof x !== undefined && x >= 0){
+            contenedor.carrito[x].cantidad += item.cantidad;
+            contenedor.carrito[x].subTotal = contenedor.carrito[x].precio * contenedor.carrito[x].cantidad
+            contenedor.carrito[x].desc = (contenedor.carrito[x].descuento * contenedor.carrito[x].subTotal) / 100
+            contenedor.carrito[x].total = contenedor.carrito[x].subTotal - contenedor.carrito[x].desc;
+          }else{
+            item.subTotal = item.precio * item.cantidad;
+            item.desc = item.descuento * item.subTotal / 100;
+            item.total = item.subTotal - item.desc;
+            contenedor.carrito.push(item);
+          }
+          
         }
-      }else if ( accion === 'B'){
+      }else if ( accion === 'B'){ // Borrar del carrito
         console.log('aqui')
         contenedor.carrito.splice(item, 1)
       }

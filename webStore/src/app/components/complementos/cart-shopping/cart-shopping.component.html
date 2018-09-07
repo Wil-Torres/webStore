@@ -18,3 +18,45 @@
     <button type="button" class="btn btn-warning" (click)="procesarCompra()">Procesar Compra</button>
   </div>
 </div>
+<div class="container card">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre del Producto</th>
+            <th>Cantidad</th>
+            <th class="text-center">Subtotal</th>
+            <th class="text-center">Descuento</th>
+            <th class="text-center">Total</th>
+            <th><a class="btn btn btn-outline-danger btn-sm">Borrar</a></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let comp of compra; index as i">
+          <tr>
+            <td><img [src]="comp.imagenes[0]" style="width: 55px; height: 55px;"> {{comp.nombre}}</td>
+            <td><input type="number" class="form-control" style="width: 90px;" [(ngModel)]="comp.cantidad" (change)="alcambiarCantidad(i, comp)"
+                [ngModelOptions]="{standalone: true}"></td>
+
+            <td class="text-right">{{comp.subTotal | currency:'Q.'}}</td>
+            <td class="text-right">{{comp.desc | currency:'Q.'}}</td>
+            <td class="text-right">{{comp.total | currency:'Q.'}}</td>
+            <td>
+              <span class="cursor-hover" (click)="borrarCompra(i)">
+                <i class="fas fa-trash"></i>
+              </span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4" class="text-right">TOTAL GENERAL:</th>
+            <th class="text-right">{{totales | currency:'Q.'}}</th>
+            <th>
+              <button type="button" class="btn btn-warning" (click)="procesarCompra()">Procesar Compra</button>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

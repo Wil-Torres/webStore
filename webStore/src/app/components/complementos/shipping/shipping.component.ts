@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shipping',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShippingComponent implements OnInit {
 
-  constructor() { }
+  @Input('obj1') public objeto:any={}
+  @Output() obj: EventEmitter<any> = new EventEmitter();
+  constructor() { 
+    this.procesoFacturacion().subscribe(res => {
+      this.obj.emit(this.objeto);
+    })
+  }
 
   ngOnInit() {
+  }
+  procesoFacturacion(): Observable<{}> {
+    let obs = new Observable(observer => {
+      let contador = 0;
+      let intervalo = setInterval(() => {
+        contador += 1;
+        this.obj.emit(this.objeto);
+        observer.next(contador)
+        if (contador === 5) {
+          clearInterval(intervalo);
+          observer.complete();
+        }
+      }, 1000)
+
+    });
+    return obs;
   }
 
 }
