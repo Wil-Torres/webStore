@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WebstoreService } from '../../services/webstore.service';
+import { WebstoreProductosService } from '../../services/webstore-productos.service';
 
 @Component({
   selector: 'app-procesar-compra',
@@ -8,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class ProcesarCompraComponent implements OnInit {
   currentTab = 0; // Current tab is set to be the first tab (0)
   confirmacion = {}
-  constructor() { 
+  compra: any = [];
+  constructor(private srvProducto: WebstoreService, private srvAux: WebstoreProductosService) { 
     this.confirmacion = JSON.parse(sessionStorage.getItem('confirmShop'));
+    this.compra = (JSON.parse(localStorage.getItem('cartShop'))).carrito;
   }
 
   ngOnInit() {
@@ -19,7 +23,7 @@ export class ProcesarCompraComponent implements OnInit {
 showTab(n) {
   // This function will display the specified tab of the form...
   var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
+  x[n]['style'].display = "block";
   //... and fix the Previous/Next buttons:
   if (n == 0) {
     document.getElementById("prevBtn").style.display = "none";
@@ -41,13 +45,15 @@ nextPrev(n) {
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !this.validateForm()) return false;
   // Hide the current tab:
-  x[this.currentTab].style.display = "none";
+  x[this.currentTab]['style'].display = "none";
   // Increase or decrease the current tab by 1:
   this.currentTab = this.currentTab + n;
   // if you have reached the end of the form...
   if (this.currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("regForm").submit();
+    this.compraVerificada();
+    this.currentTab = 0;
+    this.showTab(this.currentTab);
     return false;
   }
   // Otherwise, display the correct tab:
@@ -92,6 +98,24 @@ actualizarConfirmacion () {
 }
 consulta () {
   console.log(this.confirmacion);
+}
+compraVerificada(){
+  let pedido = {
+    pedidoNumero: null,
+    fecha: new Date(),
+    estado: 1,
+    monto: 150,
+    confirmacionPago: this.confirmacion,
+    detalle: this.compra,
+    uidCompra: 1
+  }
+  this.srvAux.addPedido(null, pedido).then(pedidoNuevo => {
+    console.log(pedidoNuevo.id);
+    pedidoNuevo.update({pedidoNumero: pedidoNuevo.id}).then(actualizado => {
+      alert('pedido creado y actualizado');
+    })
+    
+  })
 }
 
 }

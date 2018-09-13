@@ -12,6 +12,7 @@ export class WebstoreProductosService {
   objCollection: AngularFirestoreCollection<objeto>;
   objOb: any = [];
   productos: any = {};
+  pedidos: any = {};
 
   constructor(private afs: AngularFirestore) { }
   getIndice() {
@@ -38,6 +39,9 @@ export class WebstoreProductosService {
     return this.objCollection.doc(id).valueChanges();
     
   }
+  addPedido(indice, obj) {
+    return this.afs.collection('pedidos').add(obj)
+  }
   addProducto(indice, obj) {
     //return this.afs.collection('productos').doc(indice).set(obj);
     return this.afs.collection('productos').add(obj)
@@ -45,5 +49,27 @@ export class WebstoreProductosService {
   saveProducto(indice, obj) {
     //return this.afs.collection('productos').doc(indice).set(obj);
     return this.afs.collection('productos').doc(indice).update(obj);
+  }
+
+  getPedidos() {
+    this.objCollection = this.afs.collection('pedidos');
+    this.pedidos = this.objCollection.valueChanges();
+    return this.pedidos;
+  }
+  getPedido(id) {
+    /*this.objCollection = this.afs.collection('productos') */
+    
+    this.objCollection = this.afs.collection<objeto>('pedidos');
+    let x = this.objCollection.snapshotChanges();
+    x.forEach(producto => {
+      producto.forEach( prod =>{
+          let data = prod.payload.doc.data();
+          let id = prod.payload.doc.id;
+          data['id'] = id;
+          console.log( "ID: ", id, " Data: " , data );
+          });
+    })
+    return this.objCollection.doc(id).valueChanges();
+    
   }
 }

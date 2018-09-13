@@ -1,0 +1,92 @@
+<p>
+  trayecto-pedido works!
+</p>
+
+<div class="container padding-bottom-3x mb-1">
+  <div class="card mb-3">
+    <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
+      <span class="text-uppercase">Nº de orden: {{trayectoPedido.pedidoNumero}}</span></div>
+    <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+        <div class="w-100 text-center py-1 px-2"><span class="text-medium">Enviado vía: </span> {{trayectoPedido.shipping}}
+      </div>
+      <div class="w-100 text-center py-1 px-2"><span class="text-medium">Estado: </span> {{trayectoPedido.estado}}
+      </div>
+      <div class="w-100 text-center py-1 px-2"><span class="text-medium">Fecha prevista: </span> {{trayectoPedido.fecha}}
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+        <div class="step completed">
+          <div class="step-icon-wrap">
+            <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+          </div>
+          <h4 class="step-title">Orden confirmada</h4>
+        </div>
+        <div class="step completed">
+          <div class="step-icon-wrap">
+            <div class="step-icon"><i class="fas fa-cog"></i></div>
+          </div>
+          <h4 class="step-title">Orden de procesamiento</h4>
+        </div>
+        <div class="step">
+          <div class="step-icon-wrap">
+            <div class="step-icon"><i class="fas fa-medal"></i></div>
+          </div>
+          <h4 class="step-title">Control de calidad</h4>
+        </div>
+        <div class="step">
+          <div class="step-icon-wrap">
+            <div class="step-icon"><i class="fas fa-car"></i></div>
+          </div>
+          <h4 class="step-title">Producto despachado</h4>
+        </div>
+        <div class="step">
+          <div class="step-icon-wrap">
+            <div class="step-icon"><i class="fas fa-home"></i></div>
+          </div>
+          <h4 class="step-title">Producto entregado</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+    <div class="custom-control custom-checkbox mr-3">
+      <input class="custom-control-input" type="checkbox" id="notify_me" checked="">
+      <label class="custom-control-label" for="notify_me"><font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Notificarme cuando se entregue la orden</font>
+        </font></label>
+    </div>
+    <div class="text-left text-sm-right"><a class="btn btn-outline-primary btn-rounded btn-sm" href="orderDetails" data-toggle="modal"
+        data-target="#orderDetails"><font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Ver detalles de la orden</font>
+        </font></a></div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="card mt-4">
+      <div class="card-body">
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No. de Orden</th>
+                <th scope="col">Fecha de Compra</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let orden of pedidos | async">
+                <td>{{orden.pedidoNumero}}</td>
+                <td>{{orden.fecha.toDate() | date:'dd/MM/yyyy'}}</td>
+                <td>{{orden.estado}}</td>
+                <td>{{orden.monto | currency: 'Q.'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

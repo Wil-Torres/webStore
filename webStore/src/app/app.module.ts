@@ -43,6 +43,7 @@ import { PaymentComponent } from './components/complementos/payment/payment.comp
 import { ReviewComponent } from './components/complementos/review/review.component';
 import { ShippingComponent } from './components/complementos/shipping/shipping.component';
 import { CartShoppingComponent } from './components/complementos/cart-shopping/cart-shopping.component';
+import { TrayectoPedidoComponent } from './components/complementos/trayecto-pedido/trayecto-pedido.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CartShoppingComponent } from './components/complementos/cart-shopping/c
     PaymentComponent,
     ReviewComponent,
     ShippingComponent,
-    CartShoppingComponent
+    CartShoppingComponent,
+    TrayectoPedidoComponent
   ],
   imports: [
     BrowserModule,
