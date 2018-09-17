@@ -1,36 +1,58 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-dark bg-warning">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
   <a href="/" class="navbar-brand">WebStore</a>
-  <a class="nav-link active" routerLinkActive="active" routerLink="/productos">Productos</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/marcas">Marcas</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/categorias">Categorias</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/medidas">Medidas</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/entradas">Entradas</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/salidas">Salidas</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/kardex">Kardex</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/ajustes" *ngIf="ajustes.logeado">Ajustes</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!ajustes || !ajustes.logeado">Inciar Session</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/nuevoProducto">Nuevo Producto</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/procesar">Procesar</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/carrito">Carrito</a>
-  <div class="dropdown1">
-    <span>Mouse over me</span>
-    <div class="dropdown-content">
-      <p>Hello World!</p>   
-      <app-cart-shopping></app-cart-shopping>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Mantenimientos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLinkActive="active" routerLink="/productos">Productos</a>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/marcas">Marcas</a>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/categorias">Categorias</a>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/medidas">Medidas</a>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/nuevoProducto">Nuevo Producto</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Otras Opciones</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Movimientos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/entradas">Entradas</a>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/salidas">Salidas</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="/kardex">Kardex</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/ajustes" *ngIf="ajustes.logeado">Configuracion</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!ajustes || !ajustes.logeado">Inciar Session</a>
+    <div class="dropdown1" style="width: 50px;height:  25px;text-align:  center;">
+      <span><i class="fas fa-shopping-cart"></i></span>
+      <div class="dropdown-content">
+        <app-cart-shopping></app-cart-shopping>
+      </div>
     </div>
   </div>
 </nav>
-<!--h1>Information Request</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="text" placeholder="Name" formControlName="name">
-  <input type="text" placeholder="Email" formControlName="email">
-  <textarea placeholder="Message" formControlName="message"></textarea>
-  </textarea>
-  <button type="submit" [disabled]="form.invalid">Submit</button></form-->
-<router-outlet>
-  <app-trayecto-pedido></app-trayecto-pedido>
-</router-outlet>
+<router-outlet></router-outlet>
 
 
 <!--div class="container">

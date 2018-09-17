@@ -10,7 +10,7 @@
             <label for="descripcionMarca">Marca</label>
             <div class="input-group">
               <span class="input-group-btn">
-                <input class="form-control gt-spinner-off" type="number" id="codigo" [(ngModel)]="objeto.id" [ngModelOptions]="{standalone: true}">
+                <input class="form-control gt-spinner-off" type="number" id="codigo" [(ngModel)]="objeto.codigo" [ngModelOptions]="{standalone: true}">
               </span>
               <span class="input-group-btn"></span>
               <input id="descripcionMarca" type="text" [(ngModel)]="objeto.descripcion" [ngModelOptions]="{standalone: true}" class="form-control"
@@ -30,7 +30,7 @@
               <span class="cursor-hover" (click)="updateTodo(item.$key, item.isChecked)">
                 {{marca.id}} - {{marca.descripcion}}
               </span>
-              <span class="cursor-hover" (click)="removeTodo(item.$key)">
+              <span class="cursor-hover" (click)="removeMarca(marca)">
                 <i class="fas fa-trash"></i>
               </span>
             </li>

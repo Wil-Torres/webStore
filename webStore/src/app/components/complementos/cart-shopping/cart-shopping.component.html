@@ -1,8 +1,4 @@
-<p>
-  cart-shopping works!
-</p>
-<div style="background-color: antiquewhite; width: 400px;">
-  compra
+<div style="width: 400px;" >
   <ul class="list-group mt-4">
     <li class="list-group-item list-group-item-action d-flex justify-content-between aling-items-center" *ngFor="let comp of compra; index as i">
       <span>
@@ -18,7 +14,7 @@
     <button type="button" class="btn btn-warning" (click)="procesarCompra()">Procesar Compra</button>
   </div>
 </div>
-<div class="container card">
+<div class="container card d-xs-none d-sm-none">
   <div class="row">
     <div class="table-responsive">
       <table class="table table-striped">

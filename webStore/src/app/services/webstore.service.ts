@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Marca, Estado, Medida, Otro } from '../interfaces/mantenimientos'
 interface objeto {
   id: number;
   descripcion: string;
@@ -21,7 +22,8 @@ interface movimiento {
 export class WebstoreService {
   objCollection: AngularFirestoreCollection<objeto>;
   movCollection: AngularFirestoreCollection<movimiento>;
-  marcas: Observable<objeto[]>;
+  marcas: Observable<Marca[]>;
+  marcasCollection: AngularFirestoreCollection<Marca>;
   categorias: Observable<objeto[]>
   medidas: Observable<objeto[]>
   productos: Observable<objeto[]>
@@ -80,15 +82,16 @@ export class WebstoreService {
     return this.escuchaCarrito(item, 'B')
   }
   getMarcas() {
-    this.objCollection = this.afs.collection('marcas');
-    this.marcas = this.objCollection.valueChanges();
+    this.marcasCollection = this.afs.collection('marcas');
+    this.marcas = this.marcasCollection.valueChanges();
     return this.marcas;
   }
   addMarcas(obj) {
-    this.afs.collection('marcas').doc(obj.descripcion).set({
-      id: obj.id,
-      descripcion: obj.descripcion
-    });
+    return this.afs.collection('marcas').add(obj);
+  }
+  removeMarca(obj){
+    console.log(obj)
+    return this.afs.collection('marcas').doc(obj.id).delete()
   }
   getCategorias() {
     this.objCollection = this.afs.collection('categorias');
@@ -142,8 +145,40 @@ export class WebstoreService {
       }
       return query;
     });
-    this.productos = this.objCollection.valueChanges();
+    this.productos = this.objCollection.valueChanges().pipe(
+      map((x) => {
+        x.forEach(elem => {
+          elem['cantidad'] = 1
+        })
+        return  x;
+      })
+    );
     return this.productos;
+  }
+  getProducto() {
+    // O4FDPl7WvB3Tb7vtfHL7
+    this.objCollection = this.afs.collection<objeto>('otros');
+    let x = this.objCollection.snapshotChanges();
+    x.forEach(producto => {
+      producto.forEach( prod =>{
+          let data = prod.payload.doc.data();
+          let id = prod.payload.doc.id;
+          if(data['medida']){
+            data['medida'].get().then(res => { 
+              data['medidaRef'] = res.data()
+            });
+          };
+          if(data['estado']){
+            data['estado'].get().then(res => { 
+              data['estadoRef'] = res.data()
+            });
+          };
+          console.log(data);
+          data['id'] = 1;
+          console.log( "ID: ", id, " Data: " , data );
+          });
+    })
+    return this.objCollection.doc('O4FDPl7WvB3Tb7vtfHL7').valueChanges();
   }
   addProducto(obj) {
     console.log(obj)
